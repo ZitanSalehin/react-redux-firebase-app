@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from "react-dom/client";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+
+import NavBar from "./components/layout/NavBar";
+import Dashboard from "./components/tasks/AddTask";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <BrowserRouter>
+    
+    //   <Routes>
+    //     <Route path="/" element={<NavBar />}>
+    //       <Route index element={< SignIn/>} />
+    //       <Route path="/signin" element={<SignIn />} />
+    //       <Route path="/signup" element={<SignUp />} />
+          
+    //     </Route>
+    //   </Routes>
+    // </BrowserRouter>
+    <>
+    <ToastContainer/>
+      <NavBar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signout" element={<SignUp />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
